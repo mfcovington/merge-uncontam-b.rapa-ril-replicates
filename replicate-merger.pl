@@ -25,6 +25,7 @@ my %sample_table;
 for (<$sample_table_fh>) {
     chomp;
     my ( $sample_id, $rep_id ) = split /\t/;
+    next unless $sample_id =~ m/^RIL_\d+\w?$/;
     next unless exists $uncontam{$rep_id};
     push @{ $sample_table{$sample_id} }, $rep_id;
 }
