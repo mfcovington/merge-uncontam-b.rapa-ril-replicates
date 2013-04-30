@@ -11,7 +11,8 @@ use autodie;
 use feature 'say';
 use File::Path 'make_path';
 
-my $uncontam_file = "reps.uncontam";
+my $genotyping_dir = "/Volumes/Runner_3A/mike/RMDUP.NR_1/";
+my $uncontam_file = "$genotyping_dir/genotyped/reps.uncontam";
 my $sample_table_file = "sampleID_replicateID.20130430.tsv";
 my @chromosomes = qw(A01 A02 A03 A04 A05 A06 A07 A08 A09 A10);
 
@@ -29,19 +30,19 @@ for (<$sample_table_fh>) {
 }
 close $sample_table_fh;
 
-make_path('genotyped_merged');
+make_path("$genotyping_dir/genotyped_merged");
 for my $sample ( keys %sample_table ) {
     my %db;
     for my $rep ( @{ $sample_table{$sample} } ) {
         for my $chr (@chromosomes) {
-            my $rep_file = "genotyped/$rep.$chr.genotyped.nr";
+            my $rep_file = "$genotyping_dir/genotyped/$rep.$chr.genotyped.nr";
             open my $rep_fh, "<", $rep_file;
             add_rep( $rep, $rep_fh, \%db);
             close $rep_fh;
         }
     }
     for my $chr (@chromosomes) {
-        open my $out_fh, ">", "genotyped_merged/$sample.$chr.genotyped.nr";
+        open my $out_fh, ">", "$genotyping_dir/genotyped_merged/$sample.$chr.genotyped.nr";
 
         for my $pos ( sort { $a <=> $b } keys $db{$chr} ) {
             say $out_fh join "\t", $chr, $pos, $db{$chr}{$pos}{"par1"},
