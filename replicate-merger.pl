@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# FILE_NAME.pl
+# replicate-merger.pl
 # Mike Covington
 # created: 2013-04-29
 #
@@ -63,4 +63,4 @@ sub add_rep {
     }
 }
 
-
+exit;
