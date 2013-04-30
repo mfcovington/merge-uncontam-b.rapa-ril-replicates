@@ -13,12 +13,11 @@ use File::Path 'make_path';
 
 my @sample_file_list = @ARGV;
 my $genotyping_dir = "/Volumes/Runner_3A/mike/RMDUP.NR_1/merged.uncontam/";
-my $sample_table_file = "sampleID_samplelicateID.20130430.tsv";
 my @chromosomes = qw(A01 A02 A03 A04 A05 A06 A07 A08 A09 A10);
 
 my %samples = map { $_ => 1 } @sample_file_list;
 
-make_path("$genotyping_dir/genotyped_merged_all");
+make_path("$genotyping_dir/merged.all/genotyped");
 my %db;
 for my $sample ( keys %samples ) {
     for my $chr (@chromosomes) {
