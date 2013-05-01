@@ -12,7 +12,7 @@ use feature 'say';
 use File::Path 'make_path';
 
 my $genotyping_dir = "/Volumes/Runner_3A/mike/RMDUP.NR_1/";
-my $uncontam_file = "$genotyping_dir/genotyped/reps.uncontam";
+my $uncontam_file = "$genotyping_dir/reps.uncontam.20130501";
 my $sample_table_file = "sampleID_replicateID.20130430.tsv";
 my @chromosomes = qw(A01 A02 A03 A04 A05 A06 A07 A08 A09 A10);
 
