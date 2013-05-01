@@ -33,7 +33,7 @@ for (<$sample_table_fh>) {
 close $sample_table_fh;
 
 my $date = strftime "%m%d%Y", localtime;
-my $out_dir = "$genotyping_dir/merged.uncontam.$date/genotyped"
+my $out_dir = "$genotyping_dir/merged.uncontam.$date/genotyped";
 make_path("$out_dir");
 for my $sample ( keys %sample_table ) {
     my %db;
