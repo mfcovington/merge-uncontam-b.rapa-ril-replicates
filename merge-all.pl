@@ -12,7 +12,7 @@ use feature 'say';
 use File::Path 'make_path';
 
 my @sample_file_list = @ARGV;
-my $genotyping_dir = "/Volumes/Runner_3A/mike/RMDUP.NR_1/merged.uncontam/";
+my $genotyping_dir = "/Volumes/Runner_3A/mike/RMDUP.NR_1/merged.uncontam.20130501/";
 my @chromosomes = qw(A01 A02 A03 A04 A05 A06 A07 A08 A09 A10);
 
 my %samples;
