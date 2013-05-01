@@ -10,6 +10,7 @@ use warnings;
 use autodie;
 use feature 'say';
 use File::Path 'make_path';
+use POSIX qw(strftime);
 
 my $genotyping_dir = "/Volumes/Runner_3A/mike/RMDUP.NR_1/";
 my $uncontam_file = "$genotyping_dir/reps.uncontam.20130501";
@@ -31,7 +32,9 @@ for (<$sample_table_fh>) {
 }
 close $sample_table_fh;
 
-make_path("$genotyping_dir/genotyped_merged");
+my $date = strftime "%m%d%Y", localtime;
+my $out_dir = "$genotyping_dir/merged.uncontam.$date/genotyped"
+make_path("$out_dir");
 for my $sample ( keys %sample_table ) {
     my %db;
     for my $rep ( @{ $sample_table{$sample} } ) {
@@ -43,7 +46,7 @@ for my $sample ( keys %sample_table ) {
         }
     }
     for my $chr (@chromosomes) {
-        open my $out_fh, ">", "$genotyping_dir/genotyped_merged/$sample.$chr.genotyped.nr";
+        open my $out_fh, ">", "$out_dir/$sample.$chr.genotyped.nr";
 
         for my $pos ( sort { $a <=> $b } keys $db{$chr} ) {
             say $out_fh join "\t", $chr, $pos, $db{$chr}{$pos}{"par1"},

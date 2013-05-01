@@ -31,5 +31,5 @@ names(contam.summary.mean234)[2] <- 'mean234'
 mean234.cutoff <- 0.035
 rils.uncontam <- contam.summary.mean234$id[contam.summary.mean234$mean234 < mean234.cutoff]
 date <- format(Sys.time(), "%Y%m%d")
-write.table(rils.uncontam, paste("../reps.uncontam", date, sep = ""),
+write.table(rils.uncontam, paste("../reps.uncontam", date, sep = "."),
             quote = F, sep = "\t", row.names = F, col.names = F)
